@@ -1,0 +1,16 @@
+<%= link_to("Refresh", action: "refresh")  %>
+
+<p>
+  <strong>Title:</strong>
+  <%= @feed.title %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @feed.description %>
+</p>
+
+<ul>
+  <% @feed.items.each do |item| %>
+    <li><%= item.title %></li>
+  <% end %>
+</ul>
