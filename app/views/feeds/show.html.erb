@@ -1,16 +1,6 @@
-<%= link_to("Refresh", action: "refresh")  %>
-
-<p>
-  <strong>Title:</strong>
-  <%= @feed.title %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @feed.description %>
-</p>
-
-<ul>
-  <% @feed.items.each do |item| %>
-    <li><%= item.title %></li>
+<div class="col-md-4 col-md-offset-4">
+  <%= link_to "Refresh Feed", refresh_feed_path(@feed), class: "btn btn-warning btn-lg btn-block" %>
+  <% @feed.items.current.each do |item| %>
+    <%= button_to item.title, '#', class: "btn btn-primary btn-lg btn-block" %>
   <% end %>
-</ul>
+</div>
