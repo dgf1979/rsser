@@ -1,6 +1,7 @@
+<% @feeds.each do |feed| %>
+  <%= button_to feed.title, feed_path(feed), method: "get", class: "btn btn-primary btn-lg btn-block" %>
+<% end %>
 
-<div class="col-md-4 col-md-offset-4">
-  <% @feeds.each do |feed| %>
-    <%= button_to feed.title, feed_path(feed), method: "get", class: "btn btn-primary btn-lg btn-block" %>
-  <% end %>
-</div>
+<% content_for :footer do %>
+  <%= link_to "Add Feed", new_feed_path, { class: "btn btn-warning btn-lg btn-block btn-nav" } %>
+<% end %>

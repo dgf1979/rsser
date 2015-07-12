@@ -1,6 +1,8 @@
-<div class="col-md-4 col-md-offset-4">
-  <%= link_to "Refresh Feed", refresh_feed_path(@feed), class: "btn btn-warning btn-lg btn-block" %>
-  <% @feed.items.current.each do |item| %>
-    <%= button_to item.title, '#', class: "btn btn-primary btn-lg btn-block" %>
-  <% end %>
-</div>
+<%= link_to "Refresh Feed", refresh_feed_path(@feed), class: "btn btn-warning btn-lg btn-block" %>
+<% @feed.items.current.each do |item| %>
+  <%= button_to item.title, '#', class: "btn btn-primary btn-lg btn-block" %>
+<% end %>
+
+<% content_for :footer do %>
+  <%= link_to "Back", feeds_path, { class: "btn btn-warning btn-lg btn-block btn-nav" } %>
+<% end %>

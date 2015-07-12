@@ -8,8 +8,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="conatiner-fluid">
-    <%= yield %>
+  <div class="container-fluid">
+    <div class="col-md-4 col-md-offset-4">
+      <%= yield %>
+    </div>
+    <div class="col-md-4 col-md-offset-4 navbar-fixed-bottom">
+      <footer class="footer">
+        <%= yield :footer %>
+      </footer>
+    </div>
   </div>
 </body>
 </html>

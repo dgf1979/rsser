@@ -17,10 +17,28 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+html, body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(135deg, #959595 0%,#0d0d0d 46%,#010101 50%,#0a0a0a 53%,#4e4e4e 76%,#383838 87%,#1b1b1b 100%); /* W3C */
+}
+
 .btn {
   border-radius: 0px;
 }
 
+.btn-nav {
+  background-color: black;
+  border: none;
+}
+
 .col-md-4 {
+  padding: 0px;
+}
+
+.container-fluid {
+  height: 100%;
   padding: 0px;
 }
