@@ -24,16 +24,8 @@ class FeedsController < ApplicationController
   # POST /feeds
   # POST /feeds.json
   def create
-    rss = feed_params["rss"]
-    feed = Feedjira::Feed.fetch_and_parse(rss)
-
-    new_feed_params = {
-      rss: rss,
-      description: feed.description,
-      link: feed.url,
-      title: feed.title
-    }
-    @feed = Feed.new(new_feed_params)
+    
+    @feed = Feed.from_rss_uri(feed_params["rss"])
 
     respond_to do |format|
       if @feed.save
@@ -44,22 +36,11 @@ class FeedsController < ApplicationController
         # format.json { render json: @feed.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   def refresh
-    feed = Feedjira::Feed.fetch_and_parse(@feed.rss)
-    feed.entries.each do |entry|
-      if entry.enclosure_url
-        podcast_item_params = {
-          mp3_url: entry.enclosure_url,
-          title: entry.title,
-          description: entry.try(:description).try(:summary).try(:itunes_subtitle),
-          pub_date: entry.try(:pubDate).try(:published)
-        }
-        item = @feed.items.new(podcast_item_params)
-        last_result = item.save
-      end
-    end
+    @feed.fetch_new_items
 
     redirect_to @feed
   end
