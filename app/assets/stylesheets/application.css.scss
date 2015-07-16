@@ -69,3 +69,12 @@ form {
   color: red;
   padding: 1em;
 }
+
+.navbar-brand {
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 1.8em;
+}
+
+.navbar-inverse .navbar-brand {
+  color: white;
+}

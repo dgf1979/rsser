@@ -1,11 +1,11 @@
 <%= form_for(@feed) do |f| %>
 
   <div class="form-group">
-    <%= f.label "URL to RSS Feed", { style: "visibility: hidden"} %><br>
+    <%= f.label "URL to RSS Feed", { style: "display: none"} %><br>
     <%= f.text_field :rss, { class: "form-control", placeholder: "Feed URL" } %>
   </div>
   <div class="actions">
-    <%= f.submit "Add RSS Feed", class: "btn btn-primary btn-block" %>
+    <%= f.submit "Add RSS Feed", class: "btn btn-primary btn-block btn-lg" %>
   </div>
 <% end %>
 
