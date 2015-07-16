@@ -6,3 +6,7 @@
   </p>
 </div>
 <% end %>
+
+<% content_for :footer, flush: true do %>
+  <%= link_to "Back", :back, { class: "btn btn-warning btn-lg btn-block btn-nav" } %>
+<% end %>
