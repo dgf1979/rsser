@@ -4,6 +4,8 @@ class Feed < ActiveRecord::Base
   validates :title, presence: true
   has_many :items
 
+  @@feed_logger ||= Logger.new("#{Rails.root}/log/feed.log")
+
   def self.from_rss_uri(rss_xml_uri)
     feed = Feedjira::Feed.fetch_and_parse(rss_xml_uri)
     new_feed_params = {
@@ -41,12 +43,23 @@ class Feed < ActiveRecord::Base
         podcast_item_params = {
           mp3_url: entry.enclosure_url,
           title: entry.title,
-          description: entry.try(:itunes_summary),
+          description: entry.try(:itunes_subtite),
           pub_date: entry.try(:published)
         }
         item = self.items.new(podcast_item_params)
-        if item.save == false
-          errors += 1
+        if self.items.where("title = ?", podcast_item_params[:title]).length == 0
+          @@feed_logger.info "Found new items '#{podcast_item_params[:title]}' for feed '#{self.title}'"
+
+          if item.save == false
+            @@feed_logger.error "Failed to save '#{podcast_item_params[:title]}' for feed '#{self.title}'"
+
+            errors += 1
+            if errors == 1
+              binding.pry
+            end
+          end
+        else
+          @@feed_logger.info "Skipping Existing item '#{podcast_item_params[:title]}' for feed '#{self.title}'"
         end
       end
       return errors

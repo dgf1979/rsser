@@ -9,6 +9,6 @@ s = Rufus::Scheduler.singleton
 #
 s.every '1m' do
 
-  Rails.logger.info "checking feeds at: #{Time.now}"
-  Rails.logger.info "there are #{Feed.all.count} feeds"
+  #Rails.logger.info "checking feeds at: #{Time.now}"
+  #Rails.logger.info "there are #{Feed.all.count} feeds"
 end
