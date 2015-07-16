@@ -1,0 +1,8 @@
+<% if @exception %>
+<div class="exception">
+  <h2>an exception prohibited this feed from being saved:</h2>
+  <p>
+    <%= @exception.message %>
+  </p>
+</div>
+<% end %>
