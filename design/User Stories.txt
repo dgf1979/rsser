@@ -1,0 +1,31 @@
+Audience: Me (Drew)
+
+Project Purpose Story -
+
+I listen to a lot of podcasts, and I need a new system of tracking them.
+The reasons for wanting to create a web based podcatcher include:
+
+  -My current podcatcher app is no longer in development, and gets more difficult to obtain, and works worse as time passes
+  -My current podcatcher lives on my PC, and I have to sync w/it while at home on my home wifi network
+  -My current podcatcher lives on my PC, so I have no easy access to status directly from my phone
+  -I do not like any of the alternate free podcatchers I've tried - the only other one I liked also went out of development and became impossible to find.
+
+v.1 User Stories -
+
+  -I want to add new URI's to podcast RSS feeds
+  -I want to list all feeds by title
+  -I want to be able to refresh the feeds to populate a list with new podcasts
+  -I want to be able to easily de-list/hide any podcasts I am done with/not interested in
+  -I want to be able to manually trigger a download the MP3 files for any given podcast to my device (phone/tablet/computer)
+
+v.2 User Stories (API + Auto-refresh) -
+
+  -I would like to generate an API/subscription feed to list all my subscribed podcasts (excluding played, 'hidden' items)
+  -I would like the server to auto-refresh to check each feed for new items every X amount of time
+
+v.3 User Stories (Sync/Subscribe) -
+
+  -I would like to be able to either:
+    A.) Subscribe to my API feed using an existing free Android app that will sync the files locally (research required)
+    -or-
+    B.) Develop a simple native Android app to check my feed and auto-sync the podcast MP3's to the default Android media folder in a Podcast subdir
