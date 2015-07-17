@@ -1,7 +1,9 @@
-<h1>New Feed</h1>
+<% content_for :header do %>
+New Feed
+<% end %>
 
 <%= render 'form' %>
 
-<% content_for :footer do %>
-  <%= link_to "Back", feeds_path, { class: "btn btn-warning btn-lg btn-block btn-nav" } %>
+<% content_for :footer, flush: true do %>
+  <%= link_to "Back", :feeds, { class: "btn btn-warning btn-lg btn-block btn-nav" } %>
 <% end %>

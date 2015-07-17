@@ -22,7 +22,29 @@ html, body {
 }
 
 body {
-  background: linear-gradient(135deg, #959595 0%,#0d0d0d 46%,#010101 50%,#0a0a0a 53%,#4e4e4e 76%,#383838 87%,#1b1b1b 100%); /* W3C */
+  font-size: 2em;
+  // color: #428BCA;
+  // background: linear-gradient(135deg, #959595 0%,#0d0d0d 46%,#010101 50%,#0a0a0a 53%,#4e4e4e 76%,#383838 87%,#1b1b1b 100%); /* W3C */
+  // background: linear-gradient(135deg, #d8e0de 0%,#aebfbc 22%,#99afab 33%,#8ea6a2 50%,#829d98 67%,#4e5c5a 82%,#0e0e0e 100%); /* W3C */
+  background: linear-gradient(135deg, #ffce8a 0%,#f89307 24%,#bb6d02 50%,#ffbc5f 79%,#f89307 100%); /* W3C */
+}
+
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: url(rss2.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+form {
+  margin: 1em;
 }
 
 .btn {
@@ -41,4 +63,18 @@ body {
 .container-fluid {
   height: 100%;
   padding: 0px;
+}
+
+.exception {
+  color: red;
+  padding: 1em;
+}
+
+.navbar-brand {
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 1.8em;
+}
+
+.navbar-inverse .navbar-brand {
+  color: white;
 }

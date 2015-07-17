@@ -25,7 +25,15 @@ class FeedsController < ApplicationController
   # POST /feeds.json
   def create
     rss = feed_params["rss"]
-    feed = Feedjira::Feed.fetch_and_parse(rss)
+    feed = Feedjira::Feed
+
+    begin
+      feed.fetch_and_parse(rss)
+    rescue Exception => e
+      @exception = e
+      @feed = Feed.new
+      return render :new
+    end
 
     new_feed_params = {
       rss: rss,
