@@ -24,24 +24,8 @@ class FeedsController < ApplicationController
   # POST /feeds
   # POST /feeds.json
   def create
-    rss = feed_params["rss"]
-    feed = Feedjira::Feed
 
-    begin
-      feed.fetch_and_parse(rss)
-    rescue Exception => e
-      @exception = e
-      @feed = Feed.new
-      return render :new
-    end
-
-    new_feed_params = {
-      rss: rss,
-      description: feed.description,
-      link: feed.url,
-      title: feed.title
-    }
-    @feed = Feed.new(new_feed_params)
+    @feed = Feed.from_rss_uri(feed_params["rss"])
 
     respond_to do |format|
       if @feed.save
@@ -52,6 +36,36 @@ class FeedsController < ApplicationController
         # format.json { render json: @feed.errors, status: :unprocessable_entity }
       end
     end
+    
+    #
+    # rss = feed_params["rss"]
+    # feed = Feedjira::Feed
+    #
+    # begin
+    #   feed.fetch_and_parse(rss)
+    # rescue Exception => e
+    #   @exception = e
+    #   @feed = Feed.new
+    #   return render :new
+    # end
+    #
+    # new_feed_params = {
+    #   rss: rss,
+    #   description: feed.description,
+    #   link: feed.url,
+    #   title: feed.title
+    # }
+    # @feed = Feed.new(new_feed_params)
+    #
+    # respond_to do |format|
+    #   if @feed.save
+    #     format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
+    #     # format.json { render :show, status: :created, location: @feed }
+    #   else
+    #     # format.html { render :new }
+    #     # format.json { render json: @feed.errors, status: :unprocessable_entity }
+    #   end
+    # end
 
   end
 
