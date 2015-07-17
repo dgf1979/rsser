@@ -25,47 +25,25 @@ class FeedsController < ApplicationController
   # POST /feeds.json
   def create
 
+    begin
+      if (feed_params["rss"] =~ URI::regexp(%w(https http))) == nil
+        raise "Invalid URL"
+      end
+    rescue Exception => e
+      @exception = e
+      @feed = Feed.new
+      return render :new
+    end
+
     @feed = Feed.from_rss_uri(feed_params["rss"])
 
     respond_to do |format|
       if @feed.save
         format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
-        # format.json { render :show, status: :created, location: @feed }
       else
-        # format.html { render :new }
-        # format.json { render json: @feed.errors, status: :unprocessable_entity }
+        format.html { render :new }
       end
     end
-    
-    #
-    # rss = feed_params["rss"]
-    # feed = Feedjira::Feed
-    #
-    # begin
-    #   feed.fetch_and_parse(rss)
-    # rescue Exception => e
-    #   @exception = e
-    #   @feed = Feed.new
-    #   return render :new
-    # end
-    #
-    # new_feed_params = {
-    #   rss: rss,
-    #   description: feed.description,
-    #   link: feed.url,
-    #   title: feed.title
-    # }
-    # @feed = Feed.new(new_feed_params)
-    #
-    # respond_to do |format|
-    #   if @feed.save
-    #     format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
-    #     # format.json { render :show, status: :created, location: @feed }
-    #   else
-    #     # format.html { render :new }
-    #     # format.json { render json: @feed.errors, status: :unprocessable_entity }
-    #   end
-    # end
 
   end
 
