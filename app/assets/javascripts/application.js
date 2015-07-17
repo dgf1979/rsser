@@ -15,3 +15,17 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+var ready;
+ready = function() {
+  setNavBuffer();
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+function setNavBuffer() {
+  var h = $(".navbar-header").height() + "px";
+  console.log("set nav buffer to " + h);
+  $("#buffer").height(h);
+}

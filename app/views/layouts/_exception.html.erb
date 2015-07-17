@@ -1,0 +1,12 @@
+<% if @exception %>
+<div class="exception">
+  <h4>an exception prohibited this feed from being saved:</h4>
+  <p>
+    <%= @exception.message %>
+  </p>
+</div>
+<% end %>
+
+<% content_for :footer, flush: true do %>
+  <%= link_to "Back", :back, { class: "btn btn-warning btn-lg btn-block btn-nav" } %>
+<% end %>

@@ -37,6 +37,9 @@ group :development, :test do
   gem 'spring'
 
   gem 'pry'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'shoulda-matchers'
 end
 
 gem 'feedjira'
