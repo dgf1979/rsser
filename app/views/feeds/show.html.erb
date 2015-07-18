@@ -4,7 +4,15 @@
 
 <%= link_to "Refresh Feed", refresh_feed_path(@feed), class: "btn btn-warning btn-lg btn-block" %>
 <% @feed.items.current.each do |item| %>
+  <%= button_to "X", feed_item_path(@feed, item),
+  {:controller => "items",
+    :action => "update",
+    :method => "patch",
+    params: { donewith: true },
+    class: "btn btn-danger btn-lg btn-done" } %>
+
   <%= link_to item.title, feed_item_path(@feed, item), class: "btn btn-primary btn-lg btn-block" %>
+
 <% end %>
 
 <% content_for :footer do %>
