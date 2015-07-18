@@ -40,6 +40,10 @@ class Feed < ActiveRecord::Base
     def feed_object_from_itunesrss(feed_object)
       errors = 0
       feed_object.entries.each do |entry|
+        if entry.try(:enclosure_url) == nil
+          puts "Entry with no MP3 content"
+          return
+        end
         podcast_item_params = {
           mp3_url: entry.enclosure_url,
           title: entry.title,

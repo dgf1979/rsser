@@ -1,3 +1,7 @@
+<% content_for :header do %>
+  <%= @feed.title %>
+<% end %>
+
 <%= link_to "Refresh Feed", refresh_feed_path(@feed), class: "btn btn-warning btn-lg btn-block" %>
 <% @feed.items.current.each do |item| %>
   <%= button_to item.title, '#', class: "btn btn-primary btn-lg btn-block" %>

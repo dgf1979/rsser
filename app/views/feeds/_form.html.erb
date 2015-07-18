@@ -1,8 +1,8 @@
-<%= form_for(@feed) do |f| %>
+<%= form_for(@feed, :html => {:class => 'buffer'}) do |f| %>
 
   <div class="form-group">
     <%= f.label "URL to RSS Feed", { style: "display: none"} %><br>
-    <%= f.text_field :rss, { class: "form-control", placeholder: "Feed URL" } %>
+    <%= f.text_field :rss, { class: "form-control input-lg", placeholder: "Feed URL" } %>
   </div>
   <div class="actions">
     <%= f.submit "Add RSS Feed", class: "btn btn-primary btn-block btn-lg" %>
