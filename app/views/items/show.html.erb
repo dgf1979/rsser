@@ -2,6 +2,19 @@
   <%= @item.title %>
 <% end %>
 
+<div class="show-item-padding">
+  <%= button_to "Hide/Mark Done", feed_item_path(@feed, @item),
+  {:controller => "items",
+    :action => "update",
+    :method => "patch",
+    params: { donewith: true },
+    class: "btn btn-warning btn-lg btn-block btn-nav" } %>
+
+  <div class="item-description">
+    "<%= @item.description %>"
+  </div>
+</div>
+
 <% content_for :footer do %>
   <%= link_to "Back", :back, { class: "btn btn-warning btn-lg btn-block btn-nav" } %>
 <% end %>

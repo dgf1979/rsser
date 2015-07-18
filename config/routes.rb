@@ -4,6 +4,6 @@ Rails.application.routes.draw do
     member do
       get 'refresh'
     end
-    resources :items, only: [:show]
+    resources :items, only: [:show, :update]
   end
 end
