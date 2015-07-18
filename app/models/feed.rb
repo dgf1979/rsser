@@ -1,5 +1,4 @@
 class Feed < ActiveRecord::Base
-
   validates :rss, presence: true, uniqueness: true
   validates :title, presence: true
   has_many :items
@@ -82,6 +81,9 @@ class Feed < ActiveRecord::Base
         item = self.items.new(podcast_item_params)
         if item.save == false
           errors += 1
+          if errors == 1
+            binding.pry
+          end
         end
       end
       return errors
