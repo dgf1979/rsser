@@ -1,0 +1,7 @@
+<% content_for :header do %>
+  <%= @item.title %>
+<% end %>
+
+<% content_for :footer do %>
+  <%= link_to "Back", :back, { class: "btn btn-warning btn-lg btn-block btn-nav" } %>
+<% end %>

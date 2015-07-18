@@ -73,8 +73,16 @@ form.buffer {
 .navbar-brand {
   font-family: Impact, Charcoal, sans-serif;
   font-size: 1.8em;
+  white-space: nowrap;
 }
 
 .navbar-inverse .navbar-brand {
   color: white;
+}
+
+.navbar-toggle {
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  background-color: black;
 }
