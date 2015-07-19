@@ -11,8 +11,11 @@
     class: "btn btn-warning btn-lg btn-block btn-nav" } %>
 
   <div class="item-description">
-    "<%= @item.description %>"
+    <%= raw @item.description %>
   </div>
+
+  <%= link_to "Download", @item.mp3_url, { download: @item.mp3_url, class: "btn btn-info btn-lg btn-block" } %>
+
 </div>
 
 <% content_for :footer do %>

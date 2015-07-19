@@ -3,6 +3,8 @@ class Feed < ActiveRecord::Base
   validates :title, presence: true
   has_many :items
 
+  include FeedsHelper
+
   @@feed_logger ||= Logger.new("#{Rails.root}/log/feed.log")
 
   def self.from_rss_uri(rss_xml_uri)
@@ -29,7 +31,6 @@ class Feed < ActiveRecord::Base
       return feed_object_from_rssfeedburner(parsed_feed)
     else
       puts "Unhandled or unknown parser type: #{parser}"
-      binding.pry
     end
 
   end
@@ -46,8 +47,8 @@ class Feed < ActiveRecord::Base
         podcast_item_params = {
           mp3_url: entry.enclosure_url,
           title: entry.title,
-          description: entry.try(:itunes_subtite),
-          pub_date: entry.try(:published)
+          description: fetch_first_matching(entry, [:itunes_subtitle, :description]),
+          pub_date: fetch_first_matching(entry, [:published, :pubDate])
         }
         item = self.items.new(podcast_item_params)
         if self.items.where("title = ?", podcast_item_params[:title]).length == 0
@@ -58,7 +59,6 @@ class Feed < ActiveRecord::Base
 
             errors += 1
             if errors == 1
-              binding.pry
             end
           end
         else
