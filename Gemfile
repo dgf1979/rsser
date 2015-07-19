@@ -46,3 +46,7 @@ gem 'feedjira'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'rufus-scheduler'
+
+gem 'rails_12factor', group: :production
+
+ruby "2.2.1"
