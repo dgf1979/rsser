@@ -29,6 +29,8 @@ class Feed < ActiveRecord::Base
       return feed_object_from_itunesrss(parsed_feed)
     when "Feedjira::Parser::RSSFeedBurner"
       return feed_object_from_rssfeedburner(parsed_feed)
+    when "Feedjira::Parser::RSS"
+      return feed_object_from_rss(parsed_feed)
     else
       puts "Unhandled or unknown parser type: #{parser}"
     end
@@ -36,6 +38,38 @@ class Feed < ActiveRecord::Base
   end
 
   private
+    # RSS
+    def feed_object_from_rss(feed_object)
+      errors = 0
+      feed_object.entries.each do |entry|
+        if entry.try(:image) == nil
+          puts "Entry with no MP3 content"
+          return
+        end
+        podcast_item_params = {
+          mp3_url: entry.image,
+          title: entry.title,
+          description: fetch_first_matching(entry, [:summary, :itunes_subtitle, :description]),
+          pub_date: fetch_first_matching(entry, [:published, :pubDate])
+        }
+        item = self.items.new(podcast_item_params)
+        if self.items.where("title = ?", podcast_item_params[:title]).length == 0
+          @@feed_logger.info "Found new items '#{podcast_item_params[:title]}' for feed '#{self.title}'"
+
+          if item.save == false
+            @@feed_logger.error "Failed to save '#{podcast_item_params[:title]}' for feed '#{self.title}'"
+
+            errors += 1
+            if errors == 1
+            end
+          end
+        else
+          @@feed_logger.info "Skipping Existing item '#{podcast_item_params[:title]}' for feed '#{self.title}'"
+        end
+      end
+      return errors
+    end
+
     # itunes RSS
     def feed_object_from_itunesrss(feed_object)
       errors = 0
@@ -72,6 +106,10 @@ class Feed < ActiveRecord::Base
     def feed_object_from_rssfeedburner(feed_object)
       errors = 0
       feed_object.entries.each do |entry|
+        if entry.try(:mp3_url) == nil
+          puts "Entry with no MP3 content"
+          return
+        end
         podcast_item_params = {
           mp3_url: entry.image,
           title: entry.title,
