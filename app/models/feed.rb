@@ -1,4 +1,5 @@
 class Feed < ActiveRecord::Base
+  default_scope { order('title ASC') }
   validates :rss, presence: true, uniqueness: true
   validates :title, presence: true
   has_many :items
