@@ -6,4 +6,9 @@ Rails.application.routes.draw do
     end
     resources :items, only: [:show, :update]
   end
+  namespace :api do
+    namespace :xml do
+      resources :feed, only: [:index]
+    end  
+  end
 end
