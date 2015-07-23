@@ -4,7 +4,8 @@
 
 <%= link_to "Refresh Feed", refresh_feed_path(@feed), class: "btn btn-warning btn-lg btn-block" %>
 <% @feed.items.current.each do |item| %>
-  <%= button_to "X", feed_item_path(@feed, item),
+
+  <%= link_to "X", feed_item_path(@feed, item),
   {:controller => "items",
     :action => "update",
     :method => "patch",
