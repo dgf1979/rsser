@@ -8,6 +8,16 @@ class Feed < ActiveRecord::Base
 
   @@feed_logger ||= Logger.new("#{Rails.root}/log/feed.log")
 
+  def catch_up(number) # mark all but the x most recent items done
+    current_items = self.items.where(donewith: false).order('pub_date DESC')
+    if (current_items.count - number >= 0)
+      remove_items = current_items.last(current_items.count - number)
+      remove_items.each do |remove_item|
+        Item.find(remove_item.id).update(donewith: true)
+      end
+    end
+  end
+
   def self.from_rss_uri(rss_xml_uri)
     feed = Feedjira::Feed.fetch_and_parse(rss_xml_uri)
     new_feed_params = {
