@@ -1,0 +1,12 @@
+
+<div id="feed-<%= item.feed.id %>-item-<%= item.id %>" class="feed item">
+  <%= button_to "X", feed_item_path(item.feed, item),
+  { :remote => true,
+    :controller => "items",
+    :action => "update",
+    :method => "patch",
+    params: { donewith: true },
+    class: "btn btn-danger btn-lg btn-done" } %>
+
+  <%= link_to item.title, feed_item_path(item.feed, item), class: "btn btn-primary btn-lg btn-block" %>
+</div>

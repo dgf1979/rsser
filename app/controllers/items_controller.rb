@@ -6,11 +6,12 @@ class ItemsController < ApplicationController
   end
 
   def update
-
-    if @item.update({ donewith: params[:donewith] })
-      redirect_to feed_path(@feed)
+    respond_to do |format|
+      if @item.update({ donewith: params[:donewith] })
+        format.js {}
+        #format.html redirect_to feed_path(@feed)
+      end
     end
-
   end
 
   private
