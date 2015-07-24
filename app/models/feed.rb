@@ -36,6 +36,7 @@ class Feed < ActiveRecord::Base
 
     parsed_feed.entries.each do |entry|
       mp3_url = fetch_first_matching(entry, [:image, :enclosure_url])
+      binding.pry
       if mp3_url
         podcast_item_params = {
           mp3_url: mp3_url,
