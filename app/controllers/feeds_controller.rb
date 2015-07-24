@@ -12,6 +12,19 @@ class FeedsController < ApplicationController
     @feed = Feed.new
   end
 
+  def bulkload
+    #parse and load
+    string_to_parse = params[:bulkdata]
+    uris = string_to_parse.scan(/xmlUrl="https?:\S*"{1}/)
+    uris.each do |uri|
+      uri = uri.split('"')[1]
+      if (uri =~ URI::regexp(%w(https http)))
+        feed = Feed.from_rss_uri(uri)
+        feed.save
+      end
+    end
+  end
+
   def edit
   end
 

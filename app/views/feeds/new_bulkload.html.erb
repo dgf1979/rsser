@@ -1,0 +1,9 @@
+<h1>Bulk load from OPML</h1>
+
+<%= form_tag(feeds_bulkload_path, method: "post") do %>
+  <%= label_tag(:bulkdata, "OPML:") %>
+  <br>
+  <%= text_area_tag(:bulkdata, "", :size => "60x20" ) %>
+  <br>
+  <%= submit_tag("Halt and Catch Fire") %>
+<% end %>
