@@ -3,7 +3,7 @@ require 'rails_helper'
 include FeedsHelper
 
 describe '#fetch_first_matching' do
-  it "should return the value of a matching attribute if one exists on the given object" do
+  it "return the value of a matching attribute if one exists on the given object" do
     class Test
       attr_reader :one, :two, :three
       def initialize()
@@ -21,7 +21,7 @@ describe '#fetch_first_matching' do
     expect(fetch_first_matching(test_obj, check_for)).to eql("2")
   end
 
-  it "should return nil if no given attribute matches" do
+  it "return nil if no given attribute matches" do
     class Test
       attr_reader :one, :two, :three
       def initialize()

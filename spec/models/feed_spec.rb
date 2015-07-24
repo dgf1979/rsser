@@ -7,7 +7,7 @@ describe Feed do
 end
 
 describe "Feed.from_rss_uri" do
-  it "should create a new feed object given an RSS feed url", :vcr => true do
+  it "creates a new feed object given an RSS feed url", :vcr => true do
     uri = "http://feeds.feedburner.com/talpodcast"
     feed = Feed.from_rss_uri(uri)
     expect(feed.rss).to(eql(uri))
@@ -15,7 +15,7 @@ describe "Feed.from_rss_uri" do
 end
 
 describe "Feed#fetch_new_items" do
-  it "should load all podcast items from a feed", :vcr => true  do
+  it "load all podcast items from a feed", :vcr => true  do
     feed = Feed.create( rss: "http://feeds.feedburner.com/talpodcast",
       link: "http://www.thisamericanlife.org",
       title: "This American Life",
@@ -26,7 +26,7 @@ describe "Feed#fetch_new_items" do
 end
 
 describe "Feed#catch_up" do
-  it "should remove (i.e. mark as :downwith) the X-number oldest items from the feed" do
+  it "remove (i.e. mark as :downwith) the X-number oldest items from the feed" do
     feed = Feed.create( rss: "http://feeds.feedburner.com/talpodcast",
     link: "http://www.thisamericanlife.org",
     title: "This American Life",
