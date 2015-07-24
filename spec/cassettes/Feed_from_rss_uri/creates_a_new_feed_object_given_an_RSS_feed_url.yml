@@ -21,11 +21,11 @@ http_interactions:
       Content-Type:
       - text/xml; charset=UTF-8
       Last-Modified:
-      - Fri, 24 Jul 2015 16:53:47 GMT
+      - Fri, 24 Jul 2015 20:20:11 GMT
       Date:
-      - Fri, 24 Jul 2015 18:35:43 GMT
+      - Fri, 24 Jul 2015 20:36:39 GMT
       Expires:
-      - Fri, 24 Jul 2015 18:35:43 GMT
+      - Fri, 24 Jul 2015 20:36:39 GMT
       Cache-Control:
       - private, max-age=0
       X-Content-Type-Options:
@@ -270,5 +270,5 @@ http_interactions:
         bWVkaWE6cmF0aW5nPm5vbmFkdWx0PC9tZWRpYTpyYXRpbmc+PC9jaGFubmVs
         Pg0KPC9yc3M+DQo=
     http_version: 
-  recorded_at: Fri, 24 Jul 2015 18:35:43 GMT
+  recorded_at: Fri, 24 Jul 2015 20:36:39 GMT
 recorded_with: VCR 2.9.3
