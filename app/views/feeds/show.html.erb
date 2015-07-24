@@ -2,6 +2,10 @@
   <%= @feed.title %>
 <% end %>
 
+<% content_for :menu do %>
+  <li><%= link_to "Catch Up", catchup_feed_path(@feed), { method: "post" } %></li>
+<% end %>
+
 <%= link_to "Refresh Feed", refresh_feed_path(@feed), class: "btn btn-warning btn-lg btn-block" %>
 
 <div id="render-items">

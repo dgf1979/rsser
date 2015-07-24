@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :feeds do
     member do
       get 'refresh'
-      post 'bulkload'
+      post 'catchup'
+      #post 'bulkload'
     end
     resources :items, only: [:show, :update]
   end

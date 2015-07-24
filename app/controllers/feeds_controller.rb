@@ -1,5 +1,5 @@
 class FeedsController < ApplicationController
-  before_action :set_feed, only: [:show, :edit, :update, :destroy, :refresh]
+  before_action :set_feed, only: [:show, :edit, :update, :destroy, :refresh, :catchup]
 
   def index
     @feeds = Feed.all
@@ -23,6 +23,11 @@ class FeedsController < ApplicationController
         feed.save
       end
     end
+  end
+
+  def catchup
+    @feed.catch_up(4)
+    redirect_to @feed
   end
 
   def edit
