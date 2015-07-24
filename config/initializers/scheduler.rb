@@ -1,14 +1,11 @@
 require 'rufus-scheduler'
 
-# Let's use the rufus-scheduler singleton
-#
 s = Rufus::Scheduler.singleton
 
-
-# Stupid recurrent task...
-#
-s.every '1m' do
-
-  #Rails.logger.info "checking feeds at: #{Time.now}"
-  #Rails.logger.info "there are #{Feed.all.count} feeds"
+s.every '10m' do
+  Feed.all.each do |f|
+    Rails.logger.info "checking feed #{f.title} for updates at: #{Time.now}"
+    f.fetch_new_items
+    sleep(5)
+  end
 end

@@ -1,28 +1,20 @@
 class FeedsController < ApplicationController
   before_action :set_feed, only: [:show, :edit, :update, :destroy, :refresh]
 
-  # GET /feeds
-  # GET /feeds.json
   def index
     @feeds = Feed.all
   end
 
-  # GET /feeds/1
-  # GET /feeds/1.json
   def show
   end
 
-  # GET /feeds/new
   def new
     @feed = Feed.new
   end
 
-  # GET /feeds/1/edit
   def edit
   end
 
-  # POST /feeds
-  # POST /feeds.json
   def create
 
     begin
@@ -53,8 +45,6 @@ class FeedsController < ApplicationController
     redirect_to @feed
   end
 
-  # PATCH/PUT /feeds/1
-  # PATCH/PUT /feeds/1.json
   def update
     respond_to do |format|
       if @feed.update(feed_params)
@@ -67,8 +57,6 @@ class FeedsController < ApplicationController
     end
   end
 
-  # DELETE /feeds/1
-  # DELETE /feeds/1.json
   def destroy
     @feed.destroy
     respond_to do |format|
