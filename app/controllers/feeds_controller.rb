@@ -32,6 +32,7 @@ class FeedsController < ApplicationController
   def catchup
     @feed.catch_up(4)
     redirect_to @feed
+    flash[:notice] = 'Caught up to 4 most recent.'
   end
 
   def edit

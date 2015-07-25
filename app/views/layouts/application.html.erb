@@ -44,6 +44,10 @@
     </div>
 
     <div class="col-md-6 col-md-offset-3 navbar-fixed-bottom">
+      <div class="flash">
+        <%= notice %>
+        <%= alert %>
+      </div>
       <footer class="footer">
         <%= yield :footer %>
       </footer>
@@ -53,6 +57,7 @@
   <div id="background"></div>
 
 </div>
+
 
 
 </body>

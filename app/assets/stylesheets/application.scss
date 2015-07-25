@@ -83,3 +83,18 @@ div[class^="col-"] {
   right: 0;
   background-color: black;
 }
+
+.flash {
+  display: none;
+  text-align: center;
+  padding: 0.2em;
+  position: fixed;
+  z-index: 99;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: darkgrey;
+  color: black;
+  font-style: italic;
+  font-weight: bold;
+}

@@ -7,7 +7,16 @@
 var ready;
 ready = function() {
   setNavBuffer();
+  flashFade();
 };
+
+function flashFade() {
+  var flash = $(".flash");
+  if (flash.html() !== "") {
+    flash.show();
+    flash.fadeOut(3400, function() { $().remove(flash); });
+  }
+}
 
 function setNavBuffer() {
   var ht = ($(".navbar-header").height() + 4) + "px";
