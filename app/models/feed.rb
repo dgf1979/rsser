@@ -19,14 +19,22 @@ class Feed < ActiveRecord::Base
   end
 
   def self.from_rss_uri(rss_xml_uri)
-    feed = Feedjira::Feed.fetch_and_parse(rss_xml_uri)
-    new_feed_params = {
-      rss: rss_xml_uri,
-      description: feed.description,
-      link: feed.url,
-      title: feed.title
-    }
-    return Feed.new(new_feed_params)
+    begin
+      feed = Feedjira::Feed.fetch_and_parse(rss_xml_uri)
+      new_feed_params = {
+        rss: rss_xml_uri,
+        description: feed.description,
+        link: feed.url,
+        title: feed.title
+      }
+      return Feed.new(new_feed_params)
+    rescue Feedjira::NoParserAvailable
+      @@feed_logger.info "Trying to parse #{rss_xml_uri} failed. It may be that invalid XML was returned - make sure this URL is a valid RSS feed"
+    rescue Exception => e
+      @@feed_logger.info "Uncaught error: #{e}"
+      binding.pry
+    end
+    return nil
   end
 
   def fetch_new_items

@@ -20,9 +20,13 @@ class FeedsController < ApplicationController
       uri = uri.split('"')[1]
       if (uri =~ URI::regexp(%w(https http)))
         feed = Feed.from_rss_uri(uri)
-        feed.save
+        if feed
+          feed.save
+        end
       end
     end
+    flash[:notice] = 'Feeds parsed and loaded.'
+    render :feed_new_bulkload
   end
 
   def catchup
