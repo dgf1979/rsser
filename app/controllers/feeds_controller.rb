@@ -26,7 +26,7 @@ class FeedsController < ApplicationController
       end
     end
     flash[:notice] = 'Feeds parsed and loaded.'
-    render :feed_new_bulkload
+    render :feeds_new_bulkload
   end
 
   def catchup
